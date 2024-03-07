@@ -1,0 +1,17 @@
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/editor.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.wp-block-create-block-multi-columns-block {
+  background-color: #21759b;
+  color: #fff;
+  padding: 2px;
+  -moz-column-rule: 4px dotted red;
+       column-rule: 4px dotted red;
+}
+
+/*# sourceMappingURL=index.css.map*/
