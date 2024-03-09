@@ -12,7 +12,7 @@ import { __ } from '@wordpress/i18n';
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
 import { useBlockProps, RichText, InspectorControls} from '@wordpress/block-editor';
-import { RangeControl, PanelBody } from '@wordpress/components';
+import { RangeControl, PanelBody, SelectControl } from '@wordpress/components';
 import NumberControl from './components/number-control';
 
 /**
@@ -32,8 +32,8 @@ import './editor.scss';
  * @return {Element} Element to render.
  */
 export default function Edit({ attributes, setAttributes }) {
-	const { columnCount, columnWidth, ColumnGap } = attributes;
-	const columnStyles = { columnCount, columnWidth, ColumnGap };
+	const { columnCount, columnWidth, columnGap, columnRuleStyle } = attributes;
+	const columnStyles = { columnCount, columnWidth, columnGap, columnRuleStyle };
 	const content = attributes.content;
 
 	const onChangeContent = ( val ) => {
@@ -48,9 +48,14 @@ export default function Edit({ attributes, setAttributes }) {
 		setAttributes( { columnWidth: Number( val ) } );
 	};
 
-	const onChangeColumnGap = ( val )  => {
-		setAttributes( {ColumnGap: Number( val )} );
+	const onChangecolumnGap = ( val )  => {
+		setAttributes( {columnGap: Number( val )} );
 	}
+
+	const onChangeColumnRuleStyle = ( val )  => {
+		setAttributes( {columnRuleStyle:  val } );
+	}
+
 
 	return (
 		<>
@@ -76,12 +81,49 @@ export default function Edit({ attributes, setAttributes }) {
 
 				<NumberControl
                     label="Gap"
-                    value={ ColumnGap }
-                    onChange={ onChangeColumnGap }
+                    value={ columnGap }
+                    onChange={ onChangecolumnGap }
                     min={ 10 }
                     max={ 100 }
                 />
 
+			</PanelBody>
+			<PanelBody title="Column Separator">
+				<SelectControl
+					label="Separator Style"
+					onChange={ onChangeColumnRuleStyle }
+					value={ columnRuleStyle }
+					options={ [
+						{
+							label: 'None',
+							value: 'none',
+						},
+						{
+							label: 'Solid',
+							value: 'solid',
+						},
+						{
+							label: 'Dotted',
+							value: 'dotted',
+						},
+						{
+							label: 'Dashed',
+							value: 'dashed',
+						},
+						{
+							label: 'Double',
+							value: 'double',
+						},
+						{
+							label: 'Groove',
+							value: 'groove',
+						},
+						{
+							label: 'Ridge',
+							value: 'ridge',
+						},
+					] }
+				/>
 			</PanelBody>
 		</InspectorControls>
 

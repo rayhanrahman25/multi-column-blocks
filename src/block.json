@@ -29,9 +29,13 @@
 			"type": "integer",
 			"default": 200
 		},
-		"ColumnGap": {
+		"columnGap": {
 			"type": "integer",
 			"default": 40
+		},
+		"columnRuleStyle": {
+			"type": "string",
+			"default": "solid"
 		}
 	},
 	"textdomain": "multi-columns-block",

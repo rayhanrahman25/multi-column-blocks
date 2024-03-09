@@ -122,12 +122,14 @@ function Edit({
   const {
     columnCount,
     columnWidth,
-    ColumnGap
+    columnGap,
+    columnRuleStyle
   } = attributes;
   const columnStyles = {
     columnCount,
     columnWidth,
-    ColumnGap
+    columnGap,
+    columnRuleStyle
   };
   const content = attributes.content;
   const onChangeContent = val => {
@@ -145,9 +147,14 @@ function Edit({
       columnWidth: Number(val)
     });
   };
-  const onChangeColumnGap = val => {
+  const onChangecolumnGap = val => {
     setAttributes({
-      ColumnGap: Number(val)
+      columnGap: Number(val)
+    });
+  };
+  const onChangeColumnRuleStyle = val => {
+    setAttributes({
+      columnRuleStyle: val
     });
   };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
@@ -167,10 +174,38 @@ function Edit({
     step: 10
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_number_control__WEBPACK_IMPORTED_MODULE_4__["default"], {
     label: "Gap",
-    value: ColumnGap,
-    onChange: onChangeColumnGap,
+    value: columnGap,
+    onChange: onChangecolumnGap,
     min: 10,
     max: 100
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: "Column Separator"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+    label: "Separator Style",
+    onChange: onChangeColumnRuleStyle,
+    value: columnRuleStyle,
+    options: [{
+      label: 'None',
+      value: 'none'
+    }, {
+      label: 'Solid',
+      value: 'solid'
+    }, {
+      label: 'Dotted',
+      value: 'dotted'
+    }, {
+      label: 'Dashed',
+      value: 'dashed'
+    }, {
+      label: 'Double',
+      value: 'double'
+    }, {
+      label: 'Groove',
+      value: 'groove'
+    }, {
+      label: 'Ridge',
+      value: 'ridge'
+    }]
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
       style: columnStyles
@@ -276,12 +311,12 @@ function save({
   const {
     columnCount,
     columnWidth,
-    ColumnGap
+    columnGap
   } = attributes;
   const columnStyles = {
     columnCount,
     columnWidth,
-    ColumnGap
+    columnGap
   };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
     ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
@@ -374,7 +409,7 @@ module.exports = window["wp"]["i18n"];
   \************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/multi-columns-block","version":"0.1.0","title":"Multi Columns Block","category":"widgets","icon":"columns","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":false,"color":{"gradients":true,"background":true,"link":true,"text":true}},"attributes":{"content":{"type":"string"},"columnCount":{"type":"integer","default":4},"columnWidth":{"type":"integer","default":200},"ColumnGap":{"type":"integer","default":40}},"textdomain":"multi-columns-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/multi-columns-block","version":"0.1.0","title":"Multi Columns Block","category":"widgets","icon":"columns","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":false,"color":{"gradients":true,"background":true,"link":true,"text":true}},"attributes":{"content":{"type":"string"},"columnCount":{"type":"integer","default":4},"columnWidth":{"type":"integer","default":200},"columnGap":{"type":"integer","default":40},"columnRuleStyle":{"type":"string","default":"solid"}},"textdomain":"multi-columns-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
 
 /***/ })
 

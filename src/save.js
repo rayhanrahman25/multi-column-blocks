@@ -17,8 +17,8 @@ import { useBlockProps, RichText } from '@wordpress/block-editor';
  */
 export default function save( { attributes } ) {
  
-	const { columnCount, columnWidth, ColumnGap } = attributes;
-    const columnStyles = { columnCount, columnWidth, ColumnGap  };
+	const { columnCount, columnWidth, columnGap } = attributes;
+    const columnStyles = { columnCount, columnWidth, columnGap  };
    
 	return (
 		<RichText.Content
