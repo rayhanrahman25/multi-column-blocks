@@ -28,6 +28,10 @@
     "columnWidth": {
       "type": "integer",
       "default": 200
+    },
+    "ColumnGap": {
+      "type": "integer",
+      "default": 40
     }
   },
   "textdomain": "multi-columns-block",
