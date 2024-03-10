@@ -32,8 +32,8 @@ import './editor.scss';
  * @return {Element} Element to render.
  */
 export default function Edit({ attributes, setAttributes }) {
-	const { columnCount, columnWidth, columnGap, columnRuleStyle } = attributes;
-	const columnStyles = { columnCount, columnWidth, columnGap, columnRuleStyle };
+	const { columnCount, columnWidth, columnGap, columnRuleWidth, columnRuleStyle } = attributes;
+	const columnStyles = { columnCount, columnWidth, columnGap, columnRuleWidth, columnRuleStyle };
 	const content = attributes.content;
 
 	const onChangeContent = ( val ) => {
@@ -50,6 +50,10 @@ export default function Edit({ attributes, setAttributes }) {
 
 	const onChangecolumnGap = ( val )  => {
 		setAttributes( {columnGap: Number( val )} );
+	}
+
+	const onChangeColumnRuleWidth = ( val )  => {
+		setAttributes( {columnRuleWidth:  Number( val ) } );
 	}
 
 	const onChangeColumnRuleStyle = ( val )  => {
@@ -88,7 +92,7 @@ export default function Edit({ attributes, setAttributes }) {
                 />
 
 			</PanelBody>
-			<PanelBody title="Column Separator">
+			<PanelBody title="Column Separator" initialOpen={false}>
 				<SelectControl
 					label="Separator Style"
 					onChange={ onChangeColumnRuleStyle }
@@ -124,6 +128,13 @@ export default function Edit({ attributes, setAttributes }) {
 						},
 					] }
 				/>
+				<NumberControl
+					label="Width"
+					onChange={ onChangeColumnRuleWidth }
+					value={ columnRuleWidth }
+					min={ 1 }
+					max={ 8 }
+    			/>
 			</PanelBody>
 		</InspectorControls>
 

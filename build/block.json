@@ -33,6 +33,10 @@
       "type": "integer",
       "default": 40
     },
+    "columnRuleWidth": {
+      "type": "integer",
+      "default": 1
+    },
     "columnRuleStyle": {
       "type": "string",
       "default": "solid"
