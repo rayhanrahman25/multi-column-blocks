@@ -11,7 +11,7 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps, RichText, InspectorControls} from '@wordpress/block-editor';
+import { useBlockProps, RichText, InspectorControls, PanelColorSettings} from '@wordpress/block-editor';
 import { RangeControl, PanelBody, SelectControl } from '@wordpress/components';
 import NumberControl from './components/number-control';
 
@@ -32,8 +32,8 @@ import './editor.scss';
  * @return {Element} Element to render.
  */
 export default function Edit({ attributes, setAttributes }) {
-	const { columnCount, columnWidth, columnGap, columnRuleWidth, columnRuleStyle } = attributes;
-	const columnStyles = { columnCount, columnWidth, columnGap, columnRuleWidth, columnRuleStyle };
+	const { columnCount, columnWidth, columnGap, columnRuleWidth, columnRuleStyle, columnRuleColor } = attributes;
+	const columnStyles = { columnCount, columnWidth, columnGap, columnRuleWidth, columnRuleStyle, columnRuleColor };
 	const content = attributes.content;
 
 	const onChangeContent = ( val ) => {
@@ -58,6 +58,10 @@ export default function Edit({ attributes, setAttributes }) {
 
 	const onChangeColumnRuleStyle = ( val )  => {
 		setAttributes( {columnRuleStyle:  val } );
+	}
+
+	const onChangeColumnRuleColor = ( val )  => {
+		setAttributes( {columnRuleColor:  val } );
 	}
 
 
@@ -136,6 +140,16 @@ export default function Edit({ attributes, setAttributes }) {
 					max={ 8 }
     			/>
 			</PanelBody>
+			<PanelColorSettings
+				title="Colour settings"
+				colorSettings={ [
+					{
+						label: 'Separator colour',
+						value: columnRuleColor,
+						onChange: onChangeColumnRuleColor,
+					},
+				] }
+    		></PanelColorSettings>
 		</InspectorControls>
 
 			<RichText 

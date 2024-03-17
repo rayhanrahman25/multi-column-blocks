@@ -124,14 +124,16 @@ function Edit({
     columnWidth,
     columnGap,
     columnRuleWidth,
-    columnRuleStyle
+    columnRuleStyle,
+    columnRuleColor
   } = attributes;
   const columnStyles = {
     columnCount,
     columnWidth,
     columnGap,
     columnRuleWidth,
-    columnRuleStyle
+    columnRuleStyle,
+    columnRuleColor
   };
   const content = attributes.content;
   const onChangeContent = val => {
@@ -162,6 +164,11 @@ function Edit({
   const onChangeColumnRuleStyle = val => {
     setAttributes({
       columnRuleStyle: val
+    });
+  };
+  const onChangeColumnRuleColor = val => {
+    setAttributes({
+      columnRuleColor: val
     });
   };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
@@ -220,7 +227,14 @@ function Edit({
     value: columnRuleWidth,
     min: 1,
     max: 8
-  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.PanelColorSettings, {
+    title: "Colour settings",
+    colorSettings: [{
+      label: 'Separator colour',
+      value: columnRuleColor,
+      onChange: onChangeColumnRuleColor
+    }]
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
       style: columnStyles
     }),
@@ -327,14 +341,16 @@ function save({
     columnWidth,
     columnGap,
     columnRuleWidth,
-    columnRuleStyle
+    columnRuleStyle,
+    columnRuleColor
   } = attributes;
   const columnStyles = {
     columnCount,
     columnWidth,
     columnGap,
     columnRuleWidth,
-    columnRuleStyle
+    columnRuleStyle,
+    columnRuleColor
   };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
     ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
@@ -427,7 +443,7 @@ module.exports = window["wp"]["i18n"];
   \************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/multi-columns-block","version":"0.1.0","title":"Multi Columns Block","category":"widgets","icon":"columns","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":false,"color":{"gradients":true,"background":true,"link":true,"text":true}},"attributes":{"content":{"type":"string"},"columnCount":{"type":"integer","default":4},"columnWidth":{"type":"integer","default":200},"columnGap":{"type":"integer","default":40},"columnRuleWidth":{"type":"integer","default":1},"columnRuleStyle":{"type":"string","default":"solid"}},"textdomain":"multi-columns-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/multi-columns-block","version":"0.1.0","title":"Multi Columns Block","category":"widgets","icon":"columns","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":false,"color":{"gradients":true,"background":true,"link":true,"text":true}},"attributes":{"content":{"type":"string"},"columnCount":{"type":"integer","default":4},"columnWidth":{"type":"integer","default":200},"columnGap":{"type":"integer","default":40},"columnRuleWidth":{"type":"integer","default":1},"columnRuleStyle":{"type":"string","default":"solid"},"columnRuleColor":{"type":"string","default":"#b8b8b8"}},"textdomain":"multi-columns-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
 
 /***/ })
 

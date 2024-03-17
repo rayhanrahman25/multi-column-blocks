@@ -40,6 +40,10 @@
     "columnRuleStyle": {
       "type": "string",
       "default": "solid"
+    },
+    "columnRuleColor": {
+      "type": "string",
+      "default": "#b8b8b8"
     }
   },
   "textdomain": "multi-columns-block",
