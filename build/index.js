@@ -85,7 +85,7 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * Retrieves the translation of text.
  *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
+ * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
  */
 
 
@@ -93,7 +93,7 @@ __webpack_require__.r(__webpack_exports__);
  * React hook that is used to mark the block wrapper element.
  * It provides all the necessary props like the class name.
  *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
+ * @see https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
  */
 
 
@@ -111,9 +111,9 @@ __webpack_require__.r(__webpack_exports__);
  * The edit function describes the structure of your block in the context of the
  * editor. This represents what the editor will render when the block is used.
  *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
+ * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
  *
- * @return {Element} Element to render.
+ * @return {WPElement} Element to render.
  */
 function Edit({
   attributes,
@@ -123,24 +123,31 @@ function Edit({
     columnCount,
     columnWidth,
     columnGap,
-    columnRuleWidth,
     columnRuleStyle,
+    columnRuleWidth,
     columnRuleColor
   } = attributes;
   const columnStyles = {
     columnCount,
     columnWidth,
     columnGap,
-    columnRuleWidth,
     columnRuleStyle,
+    columnRuleWidth,
     columnRuleColor
   };
-  const content = attributes.content;
-  const onChangeContent = val => {
-    setAttributes({
-      content: val
-    });
-  };
+  const ALLOWED_BLOCKS = ['core/heading', 'core/paragraph', 'core/image'];
+  const TEMPLATE_PARAGRAPHS = ['Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin finibus, lectus non interdum cursus, arcu sapien mollis lacus, et tincidunt odio nisi ut purus. Duis eleifend, magna placerat faucibus tincidunt, orci nulla ornare tortor, eget egestas tortor nunc quis sem. Cras in tortor justo. Nulla consectetur leo vel blandit consectetur. Fusce quis sapien ante. Vestibulum non varius augue, et ultricies urna. Integer hendrerit suscipit nibh.', 'Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras vestibulum mauris diam. Praesent semper diam a efficitur iaculis. Nullam lacinia augue quis lorem accumsan tempus. Maecenas dapibus velit eu blandit pretium. Nullam posuere ut ipsum in commodo. Fusce fringilla quis turpis a placerat. Etiam hendrerit velit a lacus varius ornare.'];
+  const MC_TEMPLATE = [['core/heading', {
+    level: 2,
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Heading...', 'multi-columns')
+  }], ['core/paragraph', {
+    placeholder: TEMPLATE_PARAGRAPHS[0]
+  }], ['core/heading', {
+    level: 4,
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Sub-heading...', 'multi-columns')
+  }], ['core/paragraph', {
+    placeholder: TEMPLATE_PARAGRAPHS[1]
+  }]];
   const onChangeColumnCount = val => {
     setAttributes({
       columnCount: val
@@ -151,19 +158,19 @@ function Edit({
       columnWidth: Number(val)
     });
   };
-  const onChangecolumnGap = val => {
+  const onChangeColumnGap = val => {
     setAttributes({
       columnGap: Number(val)
-    });
-  };
-  const onChangeColumnRuleWidth = val => {
-    setAttributes({
-      columnRuleWidth: Number(val)
     });
   };
   const onChangeColumnRuleStyle = val => {
     setAttributes({
       columnRuleStyle: val
+    });
+  };
+  const onChangeColumnRuleWidth = val => {
+    setAttributes({
+      columnRuleWidth: Number(val)
     });
   };
   const onChangeColumnRuleColor = val => {
@@ -172,77 +179,77 @@ function Edit({
     });
   };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: "Column Settings"
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Column Settings', 'multi-columns')
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
-    label: "Columns",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Columns', 'multi-columns'),
     value: columnCount,
     onChange: onChangeColumnCount,
     min: 2,
     max: 6
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_number_control__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    label: "Width",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Width', 'multi-columns'),
     value: columnWidth,
     onChange: onChangeColumnWidth,
     min: 120,
     max: 500,
     step: 10
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_number_control__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    label: "Gap",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Gap', 'multi-columns'),
+    onChange: onChangeColumnGap,
     value: columnGap,
-    onChange: onChangecolumnGap,
     min: 10,
     max: 100
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: "Column Separator",
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Column Separator', 'multi-columns'),
     initialOpen: false
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
-    label: "Separator Style",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Separator Style', 'multi-columns'),
     onChange: onChangeColumnRuleStyle,
     value: columnRuleStyle,
     options: [{
-      label: 'None',
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('None', 'multi-columns'),
       value: 'none'
     }, {
-      label: 'Solid',
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Solid', 'multi-columns'),
       value: 'solid'
     }, {
-      label: 'Dotted',
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Dotted', 'multi-columns'),
       value: 'dotted'
     }, {
-      label: 'Dashed',
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Dashed', 'multi-columns'),
       value: 'dashed'
     }, {
-      label: 'Double',
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Double', 'multi-columns'),
       value: 'double'
     }, {
-      label: 'Groove',
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Groove', 'multi-columns'),
       value: 'groove'
     }, {
-      label: 'Ridge',
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Ridge', 'multi-columns'),
       value: 'ridge'
     }]
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_number_control__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    label: "Width",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Width', 'multi-columns'),
     onChange: onChangeColumnRuleWidth,
     value: columnRuleWidth,
     min: 1,
     max: 8
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.PanelColorSettings, {
-    title: "Colour settings",
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Colour settings', 'multi-columns'),
+    initialOpen: false,
     colorSettings: [{
-      label: 'Separator colour',
       value: columnRuleColor,
-      onChange: onChangeColumnRuleColor
+      onChange: onChangeColumnRuleColor,
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Separator colour', 'multi-columns')
     }]
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
       style: columnStyles
-    }),
-    tagName: "p",
-    onChange: onChangeContent,
-    value: content,
-    placeholder: "Enter large paragraph here"
-  }));
+    })
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks, {
+    allowedBlocks: ALLOWED_BLOCKS,
+    template: MC_TEMPLATE
+  })));
 }
 
 /***/ }),
@@ -313,14 +320,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+
+/**
+ * Retrieves the translation of text.
+ *
+ * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
+ */
+
 
 /**
  * React hook that is used to mark the block wrapper element.
  * It provides all the necessary props like the class name.
  *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
+ * @see https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
  */
 
 
@@ -329,9 +345,9 @@ __webpack_require__.r(__webpack_exports__);
  * be combined into the final markup, which is then serialized by the block
  * editor into `post_content`.
  *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#save
+ * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#save
  *
- * @return {Element} Element to render.
+ * @return {WPElement} Element to render.
  */
 function save({
   attributes
@@ -340,25 +356,23 @@ function save({
     columnCount,
     columnWidth,
     columnGap,
-    columnRuleWidth,
     columnRuleStyle,
+    columnRuleWidth,
     columnRuleColor
   } = attributes;
   const columnStyles = {
     columnCount,
     columnWidth,
     columnGap,
-    columnRuleWidth,
     columnRuleStyle,
+    columnRuleWidth,
     columnRuleColor
   };
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
-    ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save({
       style: columnStyles
-    }),
-    tagName: "p",
-    value: attributes.content
-  });
+    })
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks.Content, null));
 }
 
 /***/ }),
@@ -443,7 +457,7 @@ module.exports = window["wp"]["i18n"];
   \************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/multi-columns-block","version":"0.1.0","title":"Multi Columns Block","category":"widgets","icon":"columns","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":false,"color":{"gradients":true,"background":true,"link":true,"text":true}},"attributes":{"content":{"type":"string"},"columnCount":{"type":"integer","default":4},"columnWidth":{"type":"integer","default":200},"columnGap":{"type":"integer","default":40},"columnRuleWidth":{"type":"integer","default":1},"columnRuleStyle":{"type":"string","default":"solid"},"columnRuleColor":{"type":"string","default":"#b8b8b8"}},"textdomain":"multi-columns-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/multi-columns-block","version":"0.1.0","title":"Multi Columns","category":"widgets","icon":"columns","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":false,"color":{"gradients":true,"background":true,"link":true,"text":true},"spacing":{"margin":true,"padding":true},"align":["wide","full"]},"parent":["core/post-content"],"attributes":{"content":{"type":"string","source":"html","selector":"div"},"columnCount":{"type":"integer","default":4},"columnWidth":{"type":"integer","default":200},"columnGap":{"type":"integer","default":40},"columnRuleWidth":{"type":"integer","default":1},"columnRuleStyle":{"type":"string","default":"solid"},"columnRuleColor":{"type":"string","default":"#b8b8b8"}},"keywords":["newspaper","columns","flow","text"],"textdomain":"multi-columns-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
 
 /***/ })
 
