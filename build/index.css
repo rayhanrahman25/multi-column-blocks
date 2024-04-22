@@ -7,8 +7,11 @@
  * Replace them with your own styles or remove the file completely.
  */
 .wp-block-create-block-multi-columns-block {
-  -moz-column-rule: 4px dotted #c89a55;
-       column-rule: 4px dotted #c89a55;
+  background-color: #c5e0c9;
+  color: #fff;
+  padding: 10px;
+  -moz-column-rule: 10px dotted #c89a55;
+       column-rule: 10px dotted #c89a55;
 }
 
 /*# sourceMappingURL=index.css.map*/
