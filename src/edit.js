@@ -46,6 +46,8 @@ export default function Edit( { attributes, setAttributes } ) {
         columnRuleStyle,
         columnRuleWidth,
         columnRuleColor,
+        dropCapColor,
+        dropCapSize
     } = attributes;
     const columnStyles = {
         columnCount,
@@ -54,6 +56,9 @@ export default function Edit( { attributes, setAttributes } ) {
         columnRuleStyle,
         columnRuleWidth,
         columnRuleColor,
+        '--drop-cap-color': dropCapColor,
+        '--drop-cap-font-size': dropCapSize.fontSize,
+        '--drop-cap-line-height': dropCapSize.lineHeight,
     };
  
     const ALLOWED_BLOCKS = [ 'core/heading', 'core/paragraph', 'core/image' ];
@@ -92,6 +97,63 @@ export default function Edit( { attributes, setAttributes } ) {
     const onChangeColumnRuleColor = ( val ) => {
         setAttributes( { columnRuleColor: val } );
     };
+
+    const onChangeDropCapColor = ( val ) => {
+        setAttributes( { dropCapColor: val } );
+    };
+
+    const onChangeDropCapSize = ( val ) => {
+        switch ( val ) {
+            case 'small':
+                setAttributes( {
+                    dropCapSize: {
+                        size: 'small',
+                        fontSize: '3.8rem',
+                        lineHeight: '3.5rem',
+                    },
+                } );
+                break;
+            case 'large':
+                setAttributes( {
+                    dropCapSize: {
+                        size: 'large',
+                        fontSize: '6.2rem',
+                        lineHeight: '5.2rem',
+                    },
+                } );
+                break;
+            default:
+                setAttributes( {
+                    dropCapSize: {
+                        size: 'small',
+                        fontSize: '3.8rem',
+                        lineHeight: '3.5rem',
+                    },
+                } );
+        }
+    };
+
+    const colorSettingsDropDown =
+    attributes.className === 'is-style-drop-cap'
+        ? [
+                {
+                    value: columnRuleColor,
+                    onChange: onChangeColumnRuleColor,
+                    label: __( 'Separator colour', 'multi-columns' ),
+                },
+                {
+                    value: dropCapColor,
+                    onChange: onChangeDropCapColor,
+                    label: __( 'Drop Capital colour', 'multi-columns' ),
+                },
+          ]
+        : [
+                {
+                    value: columnRuleColor,
+                    onChange: onChangeColumnRuleColor,
+                    label: __( 'Separator colour', 'multi-columns' ),
+                },
+          ];
  
     return (
         <>
@@ -167,16 +229,30 @@ export default function Edit( { attributes, setAttributes } ) {
                         max={ 8 }
                     />
                 </PanelBody>
+
+                { attributes.className === 'is-style-drop-cap' ? (
+                 <PanelBody title={ __( 'Drop-Cap', 'multi-columns' ) } initialOpen={ false }>
+                    <SelectControl
+                        label={ __( 'Size', 'multi-columns' ) }
+                        onChange={ onChangeDropCapSize }
+                        value={ dropCapSize.size }
+                        options={ [
+                            {
+                                label: __( 'Small', 'multi-columns' ),
+                                value: 'small',
+                            },
+                            {
+                                label: __( 'Large', 'multi-columns' ),
+                                value: 'large',
+                            },
+                        ] }
+                    />
+                </PanelBody> ): null }
+
                 <PanelColorSettings
                     title={ __( 'Colour settings', 'multi-columns' ) }
                     initialOpen={ false }
-                    colorSettings={ [
-                        {
-                            value: columnRuleColor,
-                            onChange: onChangeColumnRuleColor,
-                            label: __( 'Separator colour', 'multi-columns' ),
-                        },
-                    ] }
+                    colorSettings={colorSettingsDropDown}
                 ></PanelColorSettings>
             </InspectorControls>
             <div { ...useBlockProps( { style: columnStyles } ) }>
